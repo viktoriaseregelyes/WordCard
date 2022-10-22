@@ -1,30 +1,28 @@
 # Házi feladat specifikáció
 
-Információk [itt](https://viauac00.github.io/laborok/hf)
-
 ## Mobil- és webes szoftverek
-### [Dátum]
-### [Alkalmazás neve]
-### [Teljes név] - ([Neptun kód])
-### [e-mail cím] 
-### Laborvezető: [Laborvezető neve]
+### 2022.10.22.
+### Szókártya
+### Seregélyes Viktória - (OUK8CF)
+### seregelyesviki@gmail.com
+### Laborvezető: Barsi Márk
 
 ## Bemutatás
 
-Az alkalmazás rövid, 2-3 mondatos bemutatása. Honnan az ötlet, mi szülte az igényt, ki lehetne a célközönség.
-A laboron és előadáson bemutatott alkalmazásokat nem lehet házi feladatnak választani.
+Nyelvtanulásnál sokat segít, ha szókártyákkal tesszük magunkat próbára, mennyire sajátítottuk el az adot szót, kifejezést.
+Régebben én is sokat használtam tanulásnál hasonlókat, innen jött az ötlet az app megvalósításához. 
 
 ## Főbb funkciók
 
-Az alkalmazás minden funkciójára kiterjedő leírás (röviden, lényegre törően). Legyen egyértelműen eldönthető, hogy az adott funkció implementálva van-e!
-Pl.: Az alkalmazással lehetőség van tételek felvételére és tárolására, valamint azok rendezett megjelenítésére, illetve frissítésre X hálózati hívás segítségével.
+- Az alaklmazás kezdőképernyője egy bejelentkező felület lesz, ahol az új felhasználók regisztrálni is tudnak majd. Az alkalmazásból való kijelentkezésre is lehetőség lesz.
+- Ezt követően listaszerűen megjelennek a már létrehozott szólistáink. Ehhez újakat is lehet majd felvenni, amik elmentésre is kerülnek. 
+- A második képernyőn az általunk kiválasztott szólistára kattintva megnézhetjük a listában szereplő kártyáinkat, amikhez újakat is adhatunk majd hozzá.
+- Ha az előzőekben megnyitott lista tanulására kattintunk, egy újabb képernyőn ezt megtehetjuk, ahol kártyaszerűen jelennek meg a lista elemei. Ezekre kattintva
+a kártya megfordul, megtekinthetjük a hozzá tartozó jelentést is.
 
 ## Választott technológiák:
 
-- (UI)
-- (fragmentek)
-- (RecyclerView)
-- (Perzisztens adattárolás)
-
-
-# Házi feladat dokumentáció (ha nincs, ez a fejezet törölhető)
+- UI
+- Fragmentek
+- RecyclerView
+- Perzisztens adattárolás
