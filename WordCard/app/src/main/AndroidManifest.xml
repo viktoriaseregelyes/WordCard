@@ -14,10 +14,22 @@
         android:theme="@style/Theme.WordCard"
         tools:targetApi="31">
         <activity
+            android:name=".WordActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".CollectionActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.COLLECTION" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

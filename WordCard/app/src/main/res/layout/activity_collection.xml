@@ -1,30 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CollectionFragment">
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorSecondary" />
-
-    </com.google.android.material.appbar.AppBarLayout>
+    tools:context=".CollectionActivity" >
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize"
-        tools:listitem="@layout/fragment_collection" />
-
+        app:layout_anchor="@+id/rvMain"
+        app:layout_anchorGravity="center"
+        tools:listitem="@layout/word_list" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -34,5 +23,4 @@
         android:layout_margin="24dp"
         app:srcCompat="@drawable/ic_add_white_36dp" />
 
-
-</FrameLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
