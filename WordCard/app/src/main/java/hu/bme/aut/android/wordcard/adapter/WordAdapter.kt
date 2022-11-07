@@ -21,8 +21,6 @@ class WordAdapter(private val listener: WordClickListener, var context: Context)
         holder.binding.tvWordFirst.text = word.first_language
         holder.binding.tvWordSecond.text = word.second_language
 
-        //TODO EDIT holder.binding.llcollection.setOnClickListener { context.startActivity(Intent(context, WordActivity::class.java)) }
-
         holder.binding.ibRemoveWord.setOnClickListener { listener.onWordCollectionDeleted(word) }
     }
 
@@ -47,6 +45,10 @@ class WordAdapter(private val listener: WordClickListener, var context: Context)
     fun deleteItem(item: Word) {
         items.remove(item)
         notifyDataSetChanged()
+    }
+
+    fun read(): List<Word> {
+        return items
     }
 
     inner class WordViewHolder(val binding: WordListBinding) : RecyclerView.ViewHolder(binding.root)

@@ -8,6 +8,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import hu.bme.aut.android.wordcard.WordActivity.Companion.EXTRA_COLLECTION
 import hu.bme.aut.android.wordcard.adapter.WordCollectionAdapter
 import hu.bme.aut.android.wordcard.data.collection.WordCollection
 import hu.bme.aut.android.wordcard.data.collection.WordCollectionDatabase
@@ -15,12 +16,17 @@ import hu.bme.aut.android.wordcard.databinding.ActivityCollectionBinding
 import hu.bme.aut.android.wordcard.fragment.NewWordCollectionDialogFragment
 import kotlin.concurrent.thread
 
+
 class CollectionActivity() : AppCompatActivity(), WordCollectionAdapter.WordCollectionClickListener, NewWordCollectionDialogFragment.NewWordCollectionDialogListener {
     private lateinit var binding: ActivityCollectionBinding
 
     private lateinit var database: WordCollectionDatabase
     private lateinit var adapter: WordCollectionAdapter
-    //private val prof_email = intent.getStringExtra("prof_email").toString()
+    private var prof_email: String? = null
+
+    companion object {
+        const val EXTRA_PROF_EMAIL = "prof_email"
+    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_collection, menu)
@@ -30,7 +36,7 @@ class CollectionActivity() : AppCompatActivity(), WordCollectionAdapter.WordColl
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_sign_out -> {
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this@CollectionActivity, MainActivity::class.java))
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -42,13 +48,16 @@ class CollectionActivity() : AppCompatActivity(), WordCollectionAdapter.WordColl
         binding = ActivityCollectionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        prof_email = intent.getStringExtra(EXTRA_PROF_EMAIL)
+
         database = WordCollectionDatabase.getDatabase(applicationContext)
 
         binding.fab.setOnClickListener {
-            NewWordCollectionDialogFragment().show(
-                supportFragmentManager,
-                NewWordCollectionDialogFragment.TAG
-            )
+            val dialogFragment = NewWordCollectionDialogFragment()
+            val bundle = Bundle()
+            bundle.putString("prof_email", prof_email)
+            dialogFragment.setArguments(bundle)
+            dialogFragment.show(supportFragmentManager, NewWordCollectionDialogFragment.TAG)
         }
 
         initRecyclerView()
@@ -58,7 +67,7 @@ class CollectionActivity() : AppCompatActivity(), WordCollectionAdapter.WordColl
         adapter = WordCollectionAdapter(this, this)
         binding.rvMain.layoutManager = LinearLayoutManager(this)
         binding.rvMain.adapter = adapter
-        //loadItemsInBackground()
+        loadItemsInBackground()
 
         binding.rvMain.addItemDecoration(
             DividerItemDecoration(
@@ -68,14 +77,14 @@ class CollectionActivity() : AppCompatActivity(), WordCollectionAdapter.WordColl
         )
     }
 
-    /*private fun loadItemsInBackground() {
+    private fun loadItemsInBackground() {
         thread {
             val items = database.wordcollectionDao().getProfileCollection(prof_email)
             runOnUiThread {
                 adapter.update(items)
             }
         }
-    }*/
+    }
 
     override fun onItemChanged(item: WordCollection) {
         thread {
@@ -101,5 +110,12 @@ class CollectionActivity() : AppCompatActivity(), WordCollectionAdapter.WordColl
                 adapter.deleteItem(deleteItem)
             }
         }
+    }
+
+    override fun onWordCollectionSelected(collection: WordCollection) {
+        val showDetailsIntent = Intent()
+        showDetailsIntent.setClass(this@CollectionActivity, WordActivity::class.java)
+        showDetailsIntent.putExtra(EXTRA_COLLECTION, collection.name)
+        startActivity(showDetailsIntent)
     }
 }

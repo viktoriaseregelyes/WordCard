@@ -23,7 +23,7 @@ class WordCollectionAdapter(private val listener: WordCollectionClickListener, v
         holder.binding.tvName.text = wordcollection.name
         holder.binding.tvDescription.text = wordcollection.description
 
-        holder.binding.llcollection.setOnClickListener { context.startActivity(Intent(context, WordActivity::class.java)) }
+        holder.binding.llcollection.setOnClickListener { listener.onWordCollectionSelected(wordcollection) }
 
         holder.binding.ibRemove.setOnClickListener { listener.onWordCollectionDeleted(wordcollection) }
     }
@@ -33,6 +33,7 @@ class WordCollectionAdapter(private val listener: WordCollectionClickListener, v
     interface WordCollectionClickListener {
         fun onItemChanged(item: WordCollection)
         fun onWordCollectionDeleted(deleteItem: WordCollection)
+        fun onWordCollectionSelected(item: WordCollection)
     }
 
     fun addItem(item: WordCollection) {
@@ -51,5 +52,6 @@ class WordCollectionAdapter(private val listener: WordCollectionClickListener, v
         notifyDataSetChanged()
     }
 
-    inner class WordCollectionViewHolder(val binding: WordcollectionListBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class WordCollectionViewHolder(val binding: WordcollectionListBinding) : RecyclerView.ViewHolder(binding.root) {
+    }
 }

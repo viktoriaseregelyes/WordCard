@@ -15,6 +15,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var database: ProfileDatabase
     private var foundSignIn: Boolean = false
 
+    fun onEmailSelected(email: String?) {
+        val showDetailsIntent = Intent()
+        showDetailsIntent.setClass(this@MainActivity, CollectionActivity::class.java)
+        showDetailsIntent.putExtra(CollectionActivity.EXTRA_PROF_EMAIL, email)
+        startActivity(showDetailsIntent)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -79,7 +86,7 @@ class MainActivity : AppCompatActivity() {
                 var num2 = database.profileDao().getProfile(profile.email, profile.password)
                 if(num2 == 1) {
                     runOnUiThread() {
-                        startActivity(Intent(this, CollectionActivity()::class.java))
+                        onEmailSelected(profile.email)
                     }
                 }
                 else {
@@ -109,12 +116,6 @@ class MainActivity : AppCompatActivity() {
                     foundSignIn = true
                     binding.etEmailAddressSignin.requestFocus()
                     binding.etEmailAddressSignin.error = "This email has already signed"
-                }
-            }
-            finally {
-                runOnUiThread() {
-                    if (!foundSignIn)
-                        startActivity(Intent(this, CollectionActivity::class.java))
                 }
             }
         }

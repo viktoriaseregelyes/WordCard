@@ -23,6 +23,16 @@ class WordActivity : AppCompatActivity(), WordAdapter.WordClickListener, NewWord
     private lateinit var database: WordDatabase
     private lateinit var adapter: WordAdapter
 
+    private lateinit var datas: List<Word>
+    private var first: ArrayList<String> = ArrayList()
+    private var second: ArrayList<String> = ArrayList()
+
+    private var collection_name: String? = null
+
+    companion object {
+        const val EXTRA_COLLECTION = "collection"
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_card, menu)
         return super.onCreateOptionsMenu(menu)
@@ -35,10 +45,11 @@ class WordActivity : AppCompatActivity(), WordAdapter.WordClickListener, NewWord
                 true
             }
             R.id.action_add_item -> {
-                NewWordItemDialogFragment().show(
-                    supportFragmentManager,
-                    NewWordItemDialogFragment.TAG
-                )
+                val dialogFragment = NewWordItemDialogFragment()
+                val bundle = Bundle()
+                bundle.putString("collection", collection_name)
+                dialogFragment.setArguments(bundle)
+                dialogFragment.show(supportFragmentManager, NewWordItemDialogFragment.TAG)
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -50,13 +61,18 @@ class WordActivity : AppCompatActivity(), WordAdapter.WordClickListener, NewWord
         binding = ActivityWordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        collection_name = intent.getStringExtra(EXTRA_COLLECTION)
+
         database = WordDatabase.getDatabase(applicationContext)
 
         binding.fab.setOnClickListener {
-            LearnDialogFragment().show(
-                supportFragmentManager,
-                LearnDialogFragment.TAG
-            )
+            toList()
+            val dialogFragment = LearnDialogFragment()
+            val bundle = Bundle()
+            bundle.putStringArrayList("first", first)
+            bundle.putStringArrayList("second", second)
+            dialogFragment.setArguments(bundle)
+            dialogFragment.show(supportFragmentManager, LearnDialogFragment.TAG)
         }
 
         initRecyclerView()
@@ -78,9 +94,10 @@ class WordActivity : AppCompatActivity(), WordAdapter.WordClickListener, NewWord
 
     private fun loadItemsInBackground() {
         thread {
-            val items = database.wordDao().getAll()
+            val items = database.wordDao().getWordCollection(collection_name)
             runOnUiThread {
                 adapter.update(items)
+                datas = items
             }
         }
     }
@@ -107,6 +124,17 @@ class WordActivity : AppCompatActivity(), WordAdapter.WordClickListener, NewWord
             runOnUiThread {
                 adapter.deleteItem(deleteItem)
             }
+        }
+    }
+
+    private fun toList() {
+        if(!first.isEmpty()) {
+            first.clear()
+            second.clear()
+        }
+        for (i in datas) {
+            first.add(i.first_language)
+            second.add(i.second_language)
         }
     }
 }

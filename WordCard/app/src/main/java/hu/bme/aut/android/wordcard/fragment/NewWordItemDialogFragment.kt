@@ -4,6 +4,7 @@ import hu.bme.aut.android.wordcard.R
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
@@ -17,6 +18,11 @@ class NewWordItemDialogFragment : DialogFragment() {
 
     private lateinit var listener: NewWordDialogListener
     private lateinit var binding: FragmentNewWordItemDialogBinding
+    private var collection_name: String? = null
+
+    companion object {
+        const val TAG = "NewWordItemDialogFragment"
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -26,6 +32,11 @@ class NewWordItemDialogFragment : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         binding = FragmentNewWordItemDialogBinding.inflate(LayoutInflater.from(context))
+
+        val bundle = arguments
+        collection_name = bundle!!.getString("collection", "")
+
+        Log.d("WORDITEM", collection_name.toString())
 
         binding.btnOk.setOnClickListener {
             listener.onWordCreated(getWord())
@@ -42,12 +53,9 @@ class NewWordItemDialogFragment : DialogFragment() {
             .create()
     }
 
-    companion object {
-        const val TAG = "NewWordItemDialogFragment"
-    }
-
     private fun getWord() = Word(
         first_language = binding.etWordFirst.text.toString(),
-        second_language = binding.etWordSecond.text.toString()
+        second_language = binding.etWordSecond.text.toString(),
+        collection = collection_name!!
     )
 }
