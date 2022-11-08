@@ -45,10 +45,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        binding.btnSignin.setOnClickListener {
-            if(binding.etEmailAddressSignin.text.toString().isEmpty()) {
-                binding.etEmailAddressSignin.requestFocus()
-                binding.etEmailAddressSignin.error = "Please enter your email address"
+        binding.btnReg.setOnClickListener {
+            if(binding.etEmailAddressReg.text.toString().isEmpty()) {
+                binding.etEmailAddressReg.requestFocus()
+                binding.etEmailAddressReg.error = "Please enter your email address"
             }
             else if(binding.etPasswordFirst.text.toString().isEmpty() || binding.etPasswordSecond.text.toString().isEmpty()) {
                 if(binding.etPasswordFirst.text.toString().isEmpty()) {
@@ -114,15 +114,15 @@ class MainActivity : AppCompatActivity() {
             catch(e: RuntimeException) {
                 runOnUiThread() {
                     foundSignIn = true
-                    binding.etEmailAddressSignin.requestFocus()
-                    binding.etEmailAddressSignin.error = "This email has already signed"
+                    binding.etEmailAddressReg.requestFocus()
+                    binding.etEmailAddressReg.error = "This email has already signed"
                 }
             }
         }
     }
 
     private fun getProfileSignIn() = Profile(
-        email = binding.etEmailAddressSignin.text.toString(),
+        email = binding.etEmailAddressReg.text.toString(),
         password = binding.etPasswordFirst.text.toString()
     )
 

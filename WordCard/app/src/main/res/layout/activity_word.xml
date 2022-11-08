@@ -19,6 +19,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="24dp"
-        app:srcCompat="@drawable/ic_add_white_36dp" />
+        app:srcCompat="@drawable/ic_graduation_cap_48dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

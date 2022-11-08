@@ -34,6 +34,7 @@ class WordCollectionAdapter(private val listener: WordCollectionClickListener, v
         fun onItemChanged(item: WordCollection)
         fun onWordCollectionDeleted(deleteItem: WordCollection)
         fun onWordCollectionSelected(item: WordCollection)
+        fun onBackPressed()
     }
 
     fun addItem(item: WordCollection) {

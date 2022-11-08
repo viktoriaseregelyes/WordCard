@@ -54,11 +54,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="90dp"
-            android:text="@string/sign_in"
+            android:text="Registration"
             android:textSize="25dp"/>
 
         <EditText
-            android:id="@+id/etEmailAddressSignin"
+            android:id="@+id/etEmailAddressReg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/email"
@@ -77,16 +77,16 @@
             android:id="@+id/etPasswordSecond"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/password_confirmation"
+            android:hint="Confirm password"
             android:inputType="textPassword"
             android:layout_marginHorizontal="16dp" />
 
         <Button
-            android:id="@+id/btnSignin"
+            android:id="@+id/btnReg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/sign_in"
+            android:text="Registration"
             android:backgroundTint="@color/white"
             android:textColor="@color/teal_700"/>
     </LinearLayout>

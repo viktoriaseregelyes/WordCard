@@ -35,7 +35,7 @@ class CollectionActivity() : AppCompatActivity(), WordCollectionAdapter.WordColl
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_sign_out -> {
+            R.id.action_check_out-> {
                 startActivity(Intent(this@CollectionActivity, MainActivity::class.java))
                 true
             }
@@ -47,6 +47,8 @@ class CollectionActivity() : AppCompatActivity(), WordCollectionAdapter.WordColl
         super.onCreate(savedInstanceState)
         binding = ActivityCollectionBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        onBackPressed()
 
         prof_email = intent.getStringExtra(EXTRA_PROF_EMAIL)
 
@@ -102,6 +104,8 @@ class CollectionActivity() : AppCompatActivity(), WordCollectionAdapter.WordColl
             }
         }
     }
+
+    override fun onBackPressed() { }
 
     override fun onWordCollectionDeleted(deleteItem: WordCollection) {
         thread {

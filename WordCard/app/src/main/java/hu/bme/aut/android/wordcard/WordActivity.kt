@@ -40,7 +40,7 @@ class WordActivity : AppCompatActivity(), WordAdapter.WordClickListener, NewWord
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_sign_out -> {
+            R.id.action_check_out -> {
                 startActivity(Intent(this, MainActivity::class.java))
                 true
             }
