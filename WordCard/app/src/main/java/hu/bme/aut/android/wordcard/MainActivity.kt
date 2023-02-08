@@ -29,6 +29,8 @@ class MainActivity : AppCompatActivity() {
 
         database = ProfileDatabase.getDatabase(applicationContext)
 
+        onBackPressed()
+
         loadItemsInBackground()
 
         binding.btnLogin.setOnClickListener {
@@ -78,6 +80,8 @@ class MainActivity : AppCompatActivity() {
             database.profileDao().getAll()
         }
     }
+
+    override fun onBackPressed() { }
 
     private fun getExistProfile(profile: Profile) {
         thread {
