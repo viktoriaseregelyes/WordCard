@@ -1,28 +1,14 @@
-# Házi feladat specifikáció
+# Mobile- and Web-based Software (VIAUAC00) - Wordcard
 
-## Mobil- és webes szoftverek
-### 2022.10.22.
-### Szókártya
-### Seregélyes Viktória - (OUK8CF)
-### seregelyesviki@gmail.com
-### Laborvezető: Barsi Márk
+## Introduction
 
-## Bemutatás
+When learning a language, it is helpful to test yourself with vocabulary cards to see how well you have mastered the word or phrase.
+I used to use a lot of similar vocabulary to learn, which is where the idea for this app came from. 
 
-Nyelvtanulásnál sokat segít, ha szókártyákkal tesszük magunkat próbára, mennyire sajátítottuk el az adot szót, kifejezést.
-Régebben én is sokat használtam tanulásnál hasonlókat, innen jött az ötlet az app megvalósításához. 
+## Main features
 
-## Főbb funkciók
-
-- Az alaklmazás kezdőképernyője egy bejelentkező felület lesz, ahol az új felhasználók regisztrálni is tudnak majd. Az alkalmazásból való kijelentkezésre is lehetőség lesz.
-- Ezt követően listaszerűen megjelennek a már létrehozott szólistáink. Ehhez újakat is lehet majd felvenni, amik elmentésre is kerülnek. 
-- A második képernyőn az általunk kiválasztott szólistára kattintva megnézhetjük a listában szereplő kártyáinkat, amikhez újakat is adhatunk majd hozzá.
-- Ha az előzőekben megnyitott lista tanulására kattintunk, egy újabb képernyőn ezt megtehetjuk, ahol kártyaszerűen jelennek meg a lista elemei. Ezekre kattintva
-a kártya megfordul, megtekinthetjük a hozzá tartozó jelentést is.
-
-## Választott technológiák:
-
-- UI
-- Fragmentek
-- RecyclerView
-- Perzisztens adattárolás
+- The home screen of the app will be a login interface where new users will be able to register. It will also be possible to log out of the app.
+- After that, a list of the already created solo lists will be displayed. It will also be possible to add new ones, which will be saved. 
+- On the second screen, you can click on the wordlist of your choice to see the cards in the list, to which you can add new ones.
+- If we click on Learn from the list we opened before, we can do this on another screen where we will see the list items in card form. Clicking on them
+the card is turned over, you can also view the report associated with it.
